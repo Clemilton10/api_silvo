@@ -1,12 +1,10 @@
 import { useContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { GlobalContext } from '../../components/GlobalStorage';
 import BibleApi from './Bible';
 
-export default function Versions() {
+export default function Versions({ setPageName }) {
 	const global = useContext(GlobalContext);
-	const navigate = useNavigate();
 
 	const [versions, setVersions] = useState([]);
 
@@ -19,7 +17,7 @@ export default function Versions() {
 	};
 	const handleVersion = (version) => {
 		global.setVersion(version);
-		navigate('/books');
+		setPageName('Books');
 	};
 	useEffect(() => {
 		handleVersions();
@@ -28,10 +26,10 @@ export default function Versions() {
 		<div className="login_cover">
 			<div className="login_content">
 				<img
-					src="./public/vite.svg"
+					src="/vite.svg"
 					border="0"
 					height="100"
-					onClick={() => navigate('/')}
+					onClick={() => setPageName('Login')}
 					style={{ cursor: 'pointer' }}
 				/>
 				<h1>Versões</h1>

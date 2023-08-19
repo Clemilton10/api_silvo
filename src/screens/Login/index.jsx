@@ -1,12 +1,10 @@
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import LoginApi from './Login';
 import { GlobalContext } from '../../components/GlobalStorage';
 
-export default function Login() {
+export default function Login({ setPageName }) {
 	const global = useContext(GlobalContext);
-	const navigate = useNavigate();
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -16,7 +14,7 @@ export default function Login() {
 		const rp = await ctLoginApi.getToken(email);
 		if (rp.status_id == 1) {
 			global.setToken(rp.status);
-			navigate('/versions');
+			setPageName('Versions');
 		}
 	};
 
@@ -24,10 +22,10 @@ export default function Login() {
 		<div className="login_cover">
 			<div className="login_content">
 				<img
-					src="./public/vite.svg"
+					src="/vite.svg"
 					border="0"
 					height="100"
-					onClick={() => navigate('/')}
+					onClick={() => setPageName('Login')}
 					style={{ cursor: 'pointer' }}
 				/>
 				<h1>Login</h1>
@@ -39,8 +37,12 @@ export default function Login() {
 				/>
 				<input type="button" value="Entrar" onClick={handleLogin} />
 				<a
-					href={`/register`}
-					style={{ display: 'block', textAlign: 'center' }}
+					style={{
+						display: 'block',
+						textAlign: 'center',
+						cursor: 'pointer'
+					}}
+					onClick={() => setPageName('Register')}
 				>
 					Novo Cadastro
 				</a>

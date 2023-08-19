@@ -1,12 +1,10 @@
 import { useContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { GlobalContext } from '../../components/GlobalStorage';
 import BibleApi from '../Versions/Bible';
 
-export default function Books() {
+export default function Books({ setPageName }) {
 	const global = useContext(GlobalContext);
-	const navigate = useNavigate();
 
 	const [books, setBooks] = useState([]);
 
@@ -19,7 +17,7 @@ export default function Books() {
 	};
 	const handleBook = (book) => {
 		global.setBook(book);
-		navigate('/chapters');
+		setPageName('Chapters');
 	};
 	useEffect(() => {
 		handleBooks();
@@ -28,10 +26,10 @@ export default function Books() {
 		<div className="login_cover">
 			<div className="login_content">
 				<img
-					src="./public/vite.svg"
+					src="/vite.svg"
 					border="0"
 					height="100"
-					onClick={() => navigate('/')}
+					onClick={() => setPageName('Login')}
 					style={{ cursor: 'pointer' }}
 				/>
 				<h1>Livros</h1>

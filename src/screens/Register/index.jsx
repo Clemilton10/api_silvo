@@ -1,11 +1,8 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import LoginApi from '../Login/Login';
 
-export default function Register() {
-	const navigate = useNavigate();
-
+export default function Register({ setPageName }) {
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -13,12 +10,19 @@ export default function Register() {
 	const handleRegister = async () => {
 		const ctLoginApi = new LoginApi();
 		const rp = await ctLoginApi.register(name, email, password);
-		navigate('/');
+		setPageName('Login');
 	};
 
 	return (
 		<div className="login_cover">
 			<div className="login_content">
+				<img
+					src="/vite.svg"
+					border="0"
+					height="100"
+					onClick={() => setPageName('Login')}
+					style={{ cursor: 'pointer' }}
+				/>
 				<h1>Cadastro</h1>
 				<input
 					type="text"

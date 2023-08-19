@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect, useCallback } from 'react';
+
+import { GlobalStorage } from './components/GlobalStorage';
+import Login from './screens/Login';
+import Register from './screens/Register';
+import Versions from './screens/Versions';
+import Books from './screens/Books';
+import Chapters from './screens/Chapters';
+import Verses from './screens/Verses';
+
+const pages = {
+	Login: Login,
+	Register: Register,
+	Versions: Versions,
+	Books: Books,
+	Chapters: Chapters,
+	Verses: Verses
+};
 
 function App() {
-  const [count, setCount] = useState(0)
+	// buscando uma lista com o nomes das chaves (keys) em String
+	const listName = Object.keys(pages);
+	const [page, setPage] = useState(0);
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+	const setPageName = useCallback(
+		(name) => {
+			//buscando o nome passado na lista de nomes de chaves
+			const pageIndex = listName.indexOf(name);
+			// se não for -1 quer dizer que existe
+			if (pageIndex !== -1) {
+				setPage(pageIndex);
+			}
+		},
+		[listName, setPage]
+	);
+	const PageComponent = pages[listName[page]];
+
+	return (
+		<GlobalStorage>
+			<PageComponent setPageName={setPageName} />
+		</GlobalStorage>
+	);
 }
-
-export default App
+export default App;

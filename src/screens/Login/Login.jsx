@@ -31,7 +31,7 @@ export default class LoginApi {
 				// Salvando o token na nossa API(silvo)
 				tp = setTimeout(() => controller.abort(), 10000);
 				const response2 = await fetch(
-					`http://177.47.222.56:83/api_silvo/save_token`,
+					`http://177.47.222.56:88/api_silvo/save_token`,
 					{
 						method: 'POST',
 						headers: {
@@ -64,7 +64,7 @@ export default class LoginApi {
 			let controller = new AbortController();
 			let tp = setTimeout(() => controller.abort(), 10000);
 			const response = await fetch(
-				`http://177.47.222.56:83/api_silvo/get_token/${email}`,
+				`http://177.47.222.56:88/api_silvo/get_token/${email}`,
 				{
 					method: 'GET',
 					headers: {

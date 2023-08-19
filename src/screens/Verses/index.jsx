@@ -1,13 +1,11 @@
 import { useContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { GlobalContext } from '../../components/GlobalStorage';
 import BibleApi from '../Versions/Bible';
 
-export function Btn({ label, url }) {
-	const navigate = useNavigate();
+export function Btn({ setPageName, label, url }) {
 	const handleClick = () => {
-		navigate(url);
+		setPageName(url);
 	};
 	return (
 		<div className="btn" onClick={handleClick}>
@@ -16,9 +14,8 @@ export function Btn({ label, url }) {
 	);
 }
 
-export default function Verses() {
+export default function Verses({ setPageName }) {
 	const global = useContext(GlobalContext);
-	const navigate = useNavigate();
 
 	const [verses, setVerses] = useState([]);
 	const [book, setBook] = useState('');
@@ -45,15 +42,20 @@ export default function Verses() {
 		<div className="verses_cover">
 			<h1 className="verses_h1">
 				<font style={{ color: 'var(--white)' }}>
-					<Btn label={global.version.toUpperCase()} url="/versions" />
+					<Btn
+						setPageName={setPageName}
+						label={global.version.toUpperCase()}
+						url="Versions"
+					/>
 				</font>
-				<Btn label={book} url="/books" />
-				<Btn label={chapter} url="/chapters" />
+				<Btn setPageName={setPageName} label={book} url="Books" />
+				<Btn setPageName={setPageName} label={chapter} url="Chapters" />
 				<img
-					src="./public/vite.svg"
+					src="/vite.svg"
 					border="0"
 					height="50"
-					onClick={() => navigate('/')}
+					onClick={() => setPageName('Login')}
+					style={{ cursor: 'pointer' }}
 				/>
 			</h1>
 			<div className="verses_content">

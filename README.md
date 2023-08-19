@@ -1,5 +1,12 @@
 # Bíblia
 
+<center>
+<img src="./public/001.png" border=0 width=400 /><br />
+<img src="./public/002.png" border=0 width=400 /><br />
+<img src="./public/003.png" border=0 width=400 /><br />
+<img src="./public/004.png" border=0 width=400 /><br /><br />
+</center>
+
 [Documentação da API da Bíblia](https://github.com/omarciovsena/abibliadigital/blob/master/DOCUMENTATION.md)
 
 <details>
