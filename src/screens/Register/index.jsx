@@ -19,6 +19,13 @@ export default function Register() {
 	return (
 		<div className="login_cover">
 			<div className="login_content">
+				<img
+					src="/vite.svg"
+					border="0"
+					height="100"
+					onClick={() => navigate('/')}
+					style={{ cursor: 'pointer' }}
+				/>
 				<h1>Cadastro</h1>
 				<input
 					type="text"

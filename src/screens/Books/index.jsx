@@ -28,7 +28,7 @@ export default function Books() {
 		<div className="login_cover">
 			<div className="login_content">
 				<img
-					src="./public/vite.svg"
+					src="/vite.svg"
 					border="0"
 					height="100"
 					onClick={() => navigate('/')}

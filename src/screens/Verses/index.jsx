@@ -50,7 +50,7 @@ export default function Verses() {
 				<Btn label={book} url="/books" />
 				<Btn label={chapter} url="/chapters" />
 				<img
-					src="./public/vite.svg"
+					src="/vite.svg"
 					border="0"
 					height="50"
 					onClick={() => navigate('/')}
